@@ -17,15 +17,12 @@ resource "azurerm_cosmosdb_account" "db" {
     name = "EnableServerless"
   }
 
-  lifecycle {
-    ignore_changes = [capabilities]
-  }
   consistency_policy {
     consistency_level = "Session"
   }
 
   geo_location {
-    location          = var.location
+    location          = "north europe"
     failover_priority = 0
     zone_redundant    = false
   }
