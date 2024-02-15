@@ -16,6 +16,7 @@ az aks get-credentials --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP
 ```
 $tfstate = terraform state pull | convertfrom-json
 $AZURE_COSMOS_CONNECTION_STRING = $tfstate.outputs.AZURE_COSMOS_CONNECTION_STRING.value
+$APPLICATIONINSIGHTS_CONNECTION_STRING = $tfstate.outputs.APPLICATIONINSIGHTS_CONNECTION_STRING.value
 ```
 
 ## Test deployment locally
@@ -26,7 +27,7 @@ docker build -t frontend:latest ./src/web
 docker build -t backend:latest ./src/api
 
 docker run -p 80:80 frontend:latest
-docker run -p 3100:3100 -e AZURE_COSMOS_CONNECTION_STRING=$AZURE_COSMOS_CONNECTION_STRING -e AZURE_COSMOS_DATABASE_NAME=todo -e APPLICATIONINSIGHTS_CONNECTION_STRING=xxxxxx -e APPLICATIONINSIGHTS_ROLE_NAME=api -e API_ALLOW_ORIGINS='http://localhost'  backend:latest
+docker run -p 3100:3100 -e AZURE_COSMOS_CONNECTION_STRING=$AZURE_COSMOS_CONNECTION_STRING -e AZURE_COSMOS_DATABASE_NAME=todo -e APPLICATIONINSIGHTS_CONNECTION_STRING=xxxxxx -e APPLICATIONINSIGHTS_ROLE_NAME=api -e APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING  -e API_ALLOW_ORIGINS='http://localhost'  backend:latest
 ```
 
 # Reference
