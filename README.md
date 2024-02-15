@@ -47,6 +47,23 @@ docker push acrebordemo99.azurecr.io/frontend:latest
 docker push acrebordemo99.azurecr.io/backend:latest
 ```
 
+## Upload assets ready for AKS
+
+5. Upload the Docker images to the new ACR
+```
+$acr = "acrebordemo99"
+docker tag frontend:latest acrebordemo99.azurecr.io/frontend:latest
+docker tag backend:latest acrebordemo99.azurecr.io/backend:latest
+
+az acr login --name acrebordemo99
+
+docker push acrebordemo99.azurecr.io/frontend:latest
+docker push acrebordemo99.azurecr.io/backend:latest
+```
+
+6. Apply the k8s manifest files
+TODO
+
 # Reference
 
 **Terraform Azure Provider reference:**
