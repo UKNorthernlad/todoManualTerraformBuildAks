@@ -47,9 +47,6 @@ docker push acrebordemo99.azurecr.io/frontend:latest
 docker push acrebordemo99.azurecr.io/backend:latest
 ```
 
-6. Apply the k8s manifest files
-
-
 # Reference
 
 **Terraform Azure Provider reference:**
