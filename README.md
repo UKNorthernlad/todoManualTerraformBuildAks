@@ -1,22 +1,18 @@
 # Setup instructions
 
 1. Deploy the infrastructure using "terraform apply" or "azd up"
-
-2. Import the Cat & Dog Voting application
 ```
-$acr = "acrebordemo99"
-az acr import  -n $acr --source mcr.microsoft.com/oss/bitnami/redis:6.0.8 --image azure-vote-back:v1
-az acr import  -n $acr --source mcr.microsoft.com/azuredocs/azure-vote-front:v1 --image azure-vote-front:v1
+terraform apply
 ```
 
-3. Get cluster credentials
+2. Get cluster credentials
 ```
 $AKS_NAME="aks1"
 $AKS_RESOURCE_GROUP="demo-rg"
 az aks get-credentials --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP
 ```
 
-4. Get connection strings etc. from TFState
+3. Get connection strings etc. from TFState
 ```
 $tfstate = terraform state pull | convertfrom-json
 $AZURE_COSMOS_CONNECTION_STRING = $tfstate.outputs.AZURE_COSMOS_CONNECTION_STRING.value
@@ -30,7 +26,7 @@ docker build -t frontend:latest ./src/web
 docker build -t backend:latest ./src/api
 
 docker run -p 80:80 frontend:latest
-docker run -p 3100:3100 -e AZURE_COSMOS_CONNECTION_STRING='$AZURE_COSMOS_CONNECTION_STRING' -e AZURE_COSMOS_DATABASE_NAME='todo' -e APPLICATIONINSIGHTS_CONNECTION_STRING='xxxxxx' -e APPLICATIONINSIGHTS_ROLE_NAME='api'  backend:latest
+docker run -p 3100:3100 -e AZURE_COSMOS_CONNECTION_STRING=$AZURE_COSMOS_CONNECTION_STRING -e AZURE_COSMOS_DATABASE_NAME=todo -e APPLICATIONINSIGHTS_CONNECTION_STRING=xxxxxx -e APPLICATIONINSIGHTS_ROLE_NAME=api -e API_ALLOW_ORIGINS='http://localhost'  backend:latest
 ```
 
 # Reference
