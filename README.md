@@ -25,11 +25,30 @@ $APPLICATIONINSIGHTS_CONNECTION_STRING = $tfstate.outputs.APPLICATIONINSIGHTS_CO
 4. Build the container images
 ```
 docker build -t frontend:latest ./src/web
+
 docker build -t backend:latest ./src/api
 
-docker run -d -p 80:80 frontend:latest
+docker run -d -p 80:80 -e REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING frontend:latest
+
 docker run -d -p 3100:3100 -e AZURE_COSMOS_CONNECTION_STRING=$AZURE_COSMOS_CONNECTION_STRING -e AZURE_COSMOS_DATABASE_NAME=todo -e APPLICATIONINSIGHTS_ROLE_NAME=api -e APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING  -e API_ALLOW_ORIGINS='http://localhost'  backend:latest
 ```
+
+## Upload assets ready for AKS
+
+5. Upload the Docker images to the new ACR
+```
+$acr = "acrebordemo99"
+docker tag frontend:latest acrebordemo99.azurecr.io/frontend:latest
+docker tag backend:latest acrebordemo99.azurecr.io/backend:latest
+
+az acr login --name acrebordemo99
+
+docker push acrebordemo99.azurecr.io/frontend:latest
+docker push acrebordemo99.azurecr.io/backend:latest
+```
+
+6. Apply the k8s manifest files
+
 
 # Reference
 
