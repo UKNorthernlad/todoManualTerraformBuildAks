@@ -20,9 +20,16 @@ $AZURE_COSMOS_CONNECTION_STRING = $tfstate.outputs.AZURE_COSMOS_CONNECTION_STRIN
 $APPLICATIONINSIGHTS_CONNECTION_STRING = $tfstate.outputs.APPLICATIONINSIGHTS_CONNECTION_STRING.value
 ```
 
+4. Install and Ingress Controller
+```
+helm repo update
+
+helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace --set controller.nodeSelector."kubernetes\.io/os"=linux --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux --set controller.service.externalTrafficPolicy=Local --set defaultBackend.image.image=defaultbackend-amd64:1.5
+```
+
 ## Test deployment locally
 
-4. Build the container images
+5. Build the container images
 ```
 docker build -t frontend:latest ./src/web
 
@@ -35,7 +42,7 @@ docker run -d -p 3100:3100 -e AZURE_COSMOS_CONNECTION_STRING=$AZURE_COSMOS_CONNE
 
 ## Upload assets ready for AKS
 
-5. Upload the Docker images to the new ACR
+6. Upload the Docker images to the new ACR
 ```
 $acr = "acrebordemo99"
 docker tag frontend:latest acrebordemo99.azurecr.io/frontend:latest
@@ -47,22 +54,20 @@ docker push acrebordemo99.azurecr.io/frontend:latest
 docker push acrebordemo99.azurecr.io/backend:latest
 ```
 
-## Upload assets ready for AKS
-
-5. Upload the Docker images to the new ACR
+7. Apply the k8s manifest files
 ```
-$acr = "acrebordemo99"
-docker tag frontend:latest acrebordemo99.azurecr.io/frontend:latest
-docker tag backend:latest acrebordemo99.azurecr.io/backend:latest
+# Frontend
+kubectl apply -f .\src\web\manifests\deployment.tmpl.yaml
+kubectl apply -f .\src\web\manifests\service.yaml
+kubectl apply -f .\src\web\manifests\ingress.yaml
+kubectl apply -f .\src\web\manifests\config.tmpl.yaml
 
-az acr login --name acrebordemo99
-
-docker push acrebordemo99.azurecr.io/frontend:latest
-docker push acrebordemo99.azurecr.io/backend:latest
+# Backend
+kubectl apply -f .\src\api\manifests\deployment.tmpl.yaml
+kubectl apply -f .\src\api\manifests\service.yaml
+kubectl apply -f .\src\api\manifests\ingress.yaml
+kubectl apply -f .\src\api\manifests\config.tmpl.yaml
 ```
-
-6. Apply the k8s manifest files
-TODO
 
 # Reference
 
