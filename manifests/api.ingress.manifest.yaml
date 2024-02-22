@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-api
+  template:
+    metadata:
+      labels:
+        app: todo-api
+    spec:
+      containers:
+        - name: todo-api
+          image: acrebordemo99.azurecr.io/backend:latest
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "0.1"
+              memory: "500Mi"
+          ports:
+            - containerPort: 3100
+          env:
+              
+            - name: AZURE_COSMOS_CONNECTION_STRING
+              # $AZURE_COSMOS_CONNECTION_STRING variable from previous step
+              value: "mongodb://blah-cosmosdb-99:nc7izM0FMqiF2X1SIf7eXJ7VOVuvv9f35XNBvFK0CMztJriFYAADQJ4599t8i3F9FJmSKmAEyqhzACDbI3l7cw==@blah-cosmosdb-99.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@blah-cosmosdb-99@"
+            - name: AZURE_KEY_VAULT_ENDPOINT
+              # $AZURE_KEY_VAULT_ENDPOINT variable from previous step
+              value: "https://eborkeyvault99.vault.azure.net/"
+            - name: APPLICATIONINSIGHTS_CONNECTION_STRING
+              # $APPLICATIONINSIGHTS_CONNECTION_STRING variable from previous step
+              value: "InstrumentationKey=08962df8-79bb-4ed2-a352-b2f010413ce5;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
+            - name: API_ALLOW_ORIGINS
+              # Replace with the IP address of your frontend web service.
+              value: "http://20.31.101.201"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-api
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3100
+      targetPort: 3100
+  selector:
+    app: todo-api            
