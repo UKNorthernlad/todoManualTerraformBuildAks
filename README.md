@@ -105,7 +105,7 @@ kubectl apply -f .\manifests\api.ingress.manifest.yaml
 # Set the REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING environment variable value to the $APPLICATIONINSIGHTS_CONNECTION_STRING.
 
 # Now apply the manifest
-kubectl apply -f .\manifests\api.ingress.manifest.yaml
+kubectl apply -f .\manifests\web.ingress.manifest.yaml
 ```
 
 14. Connect to the application
