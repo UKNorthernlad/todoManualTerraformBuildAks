@@ -80,16 +80,17 @@ No command yet - make the change manually via the portal.
 # $APPLICATIONINSIGHTS_CONNECTION_STRING
 # $AZURE_KEY_VAULT_ENDPOINT
 
-kubectl apply -f api.manifest.yaml
+kubectl apply -f .\manifests\api.manifest.yaml
 ```
 
 Now retreive the public IP address of the API
 ```
 kubectl get service todo-api -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
-Open a browser and go to http://IP-ADDRESS
+Open a browser and go to http://IP-ADDRESS. You should see the API Swagger UI.
 
 9. Apply the k8s manifest file for the WEB layer. 
+**TODO**
 
 # Reference
 
