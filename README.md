@@ -64,8 +64,29 @@ docker push acrebordemo99.azurecr.io/frontend:latest
 docker push acrebordemo99.azurecr.io/backend:latest
 ```
 
-7. Apply the k8s manifest files
-TODO
+7. Grant AKS Node pool managed identity "Key Vault Administrator" rights on the Key Vault
+```
+No command yet - make the change manually via the portal.
+```
+
+8. Apply the k8s manifest file for the API layer. 
+```
+# Update the api.manifest.yaml file with the following environment variables:
+# $AZURE_COSMOS_CONNECTION_STRING
+# $APPLICATIONINSIGHTS_CONNECTION_STRING
+# $AZURE_KEY_VAULT_ENDPOINT
+
+kubectl apply -f api.manifest.yaml
+```
+
+Now retreive the public IP address of the API
+```
+kubectl get service todo-api -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+```
+
+Open a browser and go to http://IP-ADDRESS
+
+9. Apply the k8s manifest file for the WEB layer. 
 
 # Reference
 
