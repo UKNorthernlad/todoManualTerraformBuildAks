@@ -1,18 +1,20 @@
 # Setup instructions
+1. Install the **terraform** command using the instructions from https://developer.hashicorp.com/terraform/install
 
-1. Deploy the infrastructure using "terraform apply" or "azd up"
+2. Deploy the infrastructure using "terraform apply"
 ```
+cd infra
 terraform apply
 ```
 
-2. Get cluster credentials
+3. Get cluster credentials
 ```
 $AKS_NAME="aks1"
 $AKS_RESOURCE_GROUP="demo-rg"
 az aks get-credentials --name $AKS_NAME --resource-group $AKS_RESOURCE_GROUP
 ```
 
-3. Get connection strings etc. from TFState
+4. Get connection strings etc. from TFState
 ```
 cd infra
 $tfstate = terraform state pull | convertfrom-json
@@ -29,7 +31,7 @@ helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.git
 
 ## Test deployment locally
 
-5. Build the container images
+4. Build the container images
 ```
 docker build -t frontend:latest ./src/web
 
@@ -54,20 +56,22 @@ docker push acrebordemo99.azurecr.io/frontend:latest
 docker push acrebordemo99.azurecr.io/backend:latest
 ```
 
-7. Apply the k8s manifest files
-```
-# Frontend
-kubectl apply -f .\src\web\manifests\deployment.tmpl.yaml
-kubectl apply -f .\src\web\manifests\service.yaml
-kubectl apply -f .\src\web\manifests\ingress.yaml
-kubectl apply -f .\src\web\manifests\config.tmpl.yaml
+## Upload assets ready for AKS
 
-# Backend
-kubectl apply -f .\src\api\manifests\deployment.tmpl.yaml
-kubectl apply -f .\src\api\manifests\service.yaml
-kubectl apply -f .\src\api\manifests\ingress.yaml
-kubectl apply -f .\src\api\manifests\config.tmpl.yaml
+5. Upload the Docker images to the new ACR
 ```
+$acr = "acrebordemo99"
+docker tag frontend:latest acrebordemo99.azurecr.io/frontend:latest
+docker tag backend:latest acrebordemo99.azurecr.io/backend:latest
+
+az acr login --name acrebordemo99
+
+docker push acrebordemo99.azurecr.io/frontend:latest
+docker push acrebordemo99.azurecr.io/backend:latest
+```
+
+6. Apply the k8s manifest files
+TODO
 
 # Reference
 
