@@ -22,7 +22,7 @@ $AZURE_COSMOS_CONNECTION_STRING = $tfstate.outputs.AZURE_COSMOS_CONNECTION_STRIN
 $APPLICATIONINSIGHTS_CONNECTION_STRING = $tfstate.outputs.APPLICATIONINSIGHTS_CONNECTION_STRING.value
 ```
 
-4. Install and Ingress Controller
+5. Install an Ingress Controller
 ```
 helm repo update
 
@@ -31,7 +31,7 @@ helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.git
 
 ## Test deployment locally
 
-4. Build the container images
+5. Build the container images
 ```
 docker build -t frontend:latest ./src/web
 
@@ -58,7 +58,7 @@ docker push acrebordemo99.azurecr.io/backend:latest
 
 ## Upload assets ready for AKS
 
-5. Upload the Docker images to the new ACR
+7. Upload the Docker images to the new ACR
 ```
 $acr = "acrebordemo99"
 docker tag frontend:latest acrebordemo99.azurecr.io/frontend:latest
@@ -70,7 +70,7 @@ docker push acrebordemo99.azurecr.io/frontend:latest
 docker push acrebordemo99.azurecr.io/backend:latest
 ```
 
-6. Apply the k8s manifest files
+8. Apply the k8s manifest files
 TODO
 
 # Reference
