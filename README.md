@@ -1,7 +1,8 @@
 # Setup instructions
 
-1. Deploy the infrastructure using "terraform apply" or "azd up"
+1. Deploy the infrastructure using "terraform apply"
 ```
+cd infra
 terraform apply
 ```
 
