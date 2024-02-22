@@ -64,10 +64,14 @@ docker push acrebordemo99.azurecr.io/frontend:latest
 docker push acrebordemo99.azurecr.io/backend:latest
 ```
 
+## Fix up permissions
+
 7. Grant AKS Node pool managed identity "Key Vault Administrator" rights on the Key Vault
 ```
 No command yet - make the change manually via the portal.
 ```
+
+## Apply AKS manifests
 
 8. Apply the k8s manifest file for the API layer. 
 ```
