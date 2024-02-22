@@ -75,15 +75,15 @@ No command yet - make the change manually via the portal.
 
 8. Apply the k8s manifest file for the API layer. 
 ```
-# Update the api.manifest.yaml file with the following environment variables:
+# Update the api.manifest.yaml file with the values from following environment variables:
 # $AZURE_COSMOS_CONNECTION_STRING
 # $APPLICATIONINSIGHTS_CONNECTION_STRING
 # $AZURE_KEY_VAULT_ENDPOINT
 
+# Now apply the manifest
 kubectl apply -f .\manifests\api.manifest.yaml
 ```
-
-Now retreive the public IP address of the API
+Retreive the public IP address of the API
 ```
 kubectl get service todo-api -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
