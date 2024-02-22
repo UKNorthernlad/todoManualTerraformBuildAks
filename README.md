@@ -71,9 +71,9 @@ docker push acrebordemo99.azurecr.io/backend:latest
 
 ## Fix up permissions
 
-9. Grant AKS Node pool managed identity "Key Vault Administrator" rights on the Key Vault
+9. Grant the *aks1-agentpool* managed identity "Key Vault Administrator" rights on the Key Vault
 ```
-No command yet - make the change manually via the portal.
+No command yet - make the change manually via the portal. TODO: Update the Terraform templates to do this automatically.
 ```
 
 ## Apply AKS manifests
