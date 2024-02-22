@@ -15,10 +15,3 @@ spec:
               name: todo-web
               port: 
                 number: 80
-        - path: /api
-          pathType: Prefix
-          backend:
-            service: 
-              name: todo-api
-              port: 
-                number: 3100
