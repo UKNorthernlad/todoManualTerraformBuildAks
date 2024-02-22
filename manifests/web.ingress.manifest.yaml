@@ -27,7 +27,7 @@ spec:
           env:
             - name: REACT_APP_API_BASE_URL
             # Replace the IP with the IP of your API service.
-              value: "api"
+              value: "http://20.31.101.201/api"
             - name: REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING
             # $REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING variable from previous step
               value: "InstrumentationKey=08962df8-79bb-4ed2-a352-b2f010413ce5;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"

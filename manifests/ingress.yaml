@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: main-ingress
+  name: ingress-default
   annotations:
     kubernetes.io/ingress.class: nginx
 spec:
@@ -14,7 +14,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: main-ingress-api
+  name: ingress-api0
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -23,7 +23,7 @@ spec:
   rules:
     - http:
         paths:
-        - path: /lists/api/(.*)
+        - path: /api/(.*)
           pathType: ImplementationSpecific
           backend:
             service: 
@@ -34,7 +34,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: main-ingress-api2
+  name: ingress-api1
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
@@ -43,7 +43,7 @@ spec:
   rules:
     - http:
         paths:
-        - path: /lists/api/(.*)/(.*)
+        - path: /api/(.*)/(.*)
           pathType: ImplementationSpecific
           backend:
             service: 
@@ -54,17 +54,36 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: main-ingress-api3
+  name: ingress-api2
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /lists
+spec:
+  rules:
+    - http:
+        paths:
+        - path: /api/lists/undefined
+          pathType: Prefix
+          backend:
+            service: 
+              name: todo-api
+              port: 
+                number: 3100
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-api3
+  annotations:
+    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
     - http:
         paths:
-        - path: /lists/api
-          pathType: Prefix
+        - path: /api
+          pathType: Exact
           backend:
             service: 
               name: todo-api
