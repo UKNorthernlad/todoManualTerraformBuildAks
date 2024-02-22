@@ -25,7 +25,7 @@ spec:
           ports:
             - containerPort: 3100
           env:
-              
+              # In a real application you would not hard code connection strings here.
             - name: AZURE_COSMOS_CONNECTION_STRING
               # $AZURE_COSMOS_CONNECTION_STRING variable from previous step
               value: "mongodb://blah-cosmosdb-99:nc7izM0FMqiF2X1SIf7eXJ7VOVuvv9f35XNBvFK0CMztJriFYAADQJ4599t8i3F9FJmSKmAEyqhzACDbI3l7cw==@blah-cosmosdb-99.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@blah-cosmosdb-99@"
@@ -35,9 +35,9 @@ spec:
             - name: APPLICATIONINSIGHTS_CONNECTION_STRING
               # $APPLICATIONINSIGHTS_CONNECTION_STRING variable from previous step
               value: "InstrumentationKey=08962df8-79bb-4ed2-a352-b2f010413ce5;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
-            - name: API_ALLOW_ORIGINS
-              # Replace with the IP address of your frontend web service.
-              value: "http://20.31.101.201"
+            #- name: API_ALLOW_ORIGINS
+            #  # Replace with the IP address of your frontend web service.
+            #  value: "http://20.31.101.201"
             - name: AZURE_COSMOS_DATABASE_NAME
               value: "Todo"
 ---
