@@ -27,6 +27,7 @@ cd infra
 $tfstate = terraform state pull | convertfrom-json
 $AZURE_COSMOS_CONNECTION_STRING = $tfstate.outputs.AZURE_COSMOS_CONNECTION_STRING.value
 $APPLICATIONINSIGHTS_CONNECTION_STRING = $tfstate.outputs.APPLICATIONINSIGHTS_CONNECTION_STRING.value
+$AZURE_KEY_VAULT_ENDPOINT = $tfstate.outputs.AZURE_KEY_VAULT_ENDPOINT.value
 ```
 
 5. Install an Ingress Controller
