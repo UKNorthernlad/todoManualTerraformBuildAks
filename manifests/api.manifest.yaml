@@ -36,7 +36,7 @@ spec:
               # $APPLICATIONINSIGHTS_CONNECTION_STRING variable from previous step
               value: "InstrumentationKey=08962df8-79bb-4ed2-a352-b2f010413ce5;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
             - name: API_ALLOW_ORIGINS
-              value: "http://52.137.24.146"
+              value: "http://20.31.101.201"
 ---
 apiVersion: v1
 kind: Service

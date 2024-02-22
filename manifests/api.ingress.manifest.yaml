@@ -35,9 +35,11 @@ spec:
             - name: APPLICATIONINSIGHTS_CONNECTION_STRING
               # $APPLICATIONINSIGHTS_CONNECTION_STRING variable from previous step
               value: "InstrumentationKey=08962df8-79bb-4ed2-a352-b2f010413ce5;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
-            - name: API_ALLOW_ORIGINS
+            #- name: API_ALLOW_ORIGINS
               # Replace with the IP address of your frontend web service.
-              value: "http://20.31.101.201"
+              #value: "http://20.31.101.201/"
+            - name: AZURE_COSMOS_DATABASE_NAME
+              value: "Todo"
 ---
 apiVersion: v1
 kind: Service
