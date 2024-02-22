@@ -10,13 +10,16 @@ terraform {
     }
   }
 
+/*
   backend "azurerm" {
       resource_group_name  = "backups"
       storage_account_name = "tfstatestore99"
       container_name       = "tfstate"
       key                  = "XXXXXXX"
   }
+  */
 }
+
 
 provider "azurerm" {
     features {
