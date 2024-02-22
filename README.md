@@ -36,12 +36,10 @@ helm repo update
 
 helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace --set controller.nodeSelector."kubernetes\.io/os"=linux --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux --set controller.service.externalTrafficPolicy=Local --set defaultBackend.image.image=defaultbackend-amd64:1.5
 ```
-6. Test the application locally
-Browse to `http://localhost`. You should now see the *Todo* application running from the local containers but using the CosmosDB in Azure.
 
 ## Test deployment locally
 
-7. Build the container images
+6. Build the container images
 ```
 docker build -t frontend:latest ./src/web
 
@@ -51,6 +49,8 @@ docker run -d -p 80:80 -e REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLI
 
 docker run -d -p 3100:3100 -e AZURE_COSMOS_CONNECTION_STRING=$AZURE_COSMOS_CONNECTION_STRING -e AZURE_COSMOS_DATABASE_NAME=Todo -e APPLICATIONINSIGHTS_ROLE_NAME=api -e APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING  -e API_ALLOW_ORIGINS='http://localhost'  backend:latest
 ```
+7. Test the application locally
+Browse to `http://localhost`. You should now see the *Todo* application running from the local containers but using the CosmosDB in Azure.
 
 ## Upload assets ready for AKS
 
