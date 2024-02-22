@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-web
+  template:
+    metadata:
+      labels:
+        app: todo-web
+    spec:
+      containers:
+        - name: todo-web
+          image: acrebordemo99.azurecr.io/frontend:latest
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "0.1"
+              memory: "500Mi"
+          ports:
+            - containerPort: 3000
+          env:
+            - name: REACT_APP_API_BASE_URL
+              value: "http://http://98.64.119.55/api"
+            - name: REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING
+              value: "InstrumentationKey=08962df8-79bb-4ed2-a352-b2f010413ce5;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-web
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+  selector:
+    app: todo-web
