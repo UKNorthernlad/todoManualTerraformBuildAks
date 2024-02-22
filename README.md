@@ -1,7 +1,14 @@
 # Setup instructions
-1. Install the **terraform** command using the instructions from https://developer.hashicorp.com/terraform/install
+These instruction assume you are running the setup from your local machine and NOT from the Azure Cloud Shell.
 
-2. Deploy the infrastructure using "terraform apply"
+1. Login to your Azure Subscription:
+```
+az login
+```
+
+2. Install the **terraform** command using the instructions from https://developer.hashicorp.com/terraform/install
+
+3. Deploy the infrastructure using "terraform apply"
 ```
 cd infra
 terraform apply
