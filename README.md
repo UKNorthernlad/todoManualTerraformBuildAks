@@ -94,6 +94,11 @@ Open a browser and go to http://IP-ADDRESS
 
 # Reference
 
+## Application Architecture
+
+
+![Application Architecture](https://raw.githubusercontent.com/Azure-Samples/todo-nodejs-mongo-aks/main/assets/resources.png)
+
 **Terraform Azure Provider reference:**
 https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs
 
