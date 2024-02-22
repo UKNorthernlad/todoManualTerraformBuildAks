@@ -26,7 +26,7 @@ spec:
             - containerPort: 3000
           env:
             - name: REACT_APP_API_BASE_URL
-              value: "http://http://98.64.119.55/api"
+              value: "http://98.64.119.55"
             - name: REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING
               value: "InstrumentationKey=08962df8-79bb-4ed2-a352-b2f010413ce5;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/"
 ---
