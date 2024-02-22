@@ -36,10 +36,12 @@ helm repo update
 
 helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace --set controller.nodeSelector."kubernetes\.io/os"=linux --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux --set controller.service.externalTrafficPolicy=Local --set defaultBackend.image.image=defaultbackend-amd64:1.5
 ```
+6. Test the application locally
+Browse to `http://localhost`. You should now see the *Todo* application running from the local containers but using the CosmosDB in Azure.
 
 ## Test deployment locally
 
-5. Build the container images
+7. Build the container images
 ```
 docker build -t frontend:latest ./src/web
 
@@ -52,7 +54,7 @@ docker run -d -p 3100:3100 -e AZURE_COSMOS_CONNECTION_STRING=$AZURE_COSMOS_CONNE
 
 ## Upload assets ready for AKS
 
-6. Upload the Docker images to the new ACR
+8. Upload the Docker images to the new ACR
 ```
 $acr = "acrebordemo99"
 docker tag frontend:latest acrebordemo99.azurecr.io/frontend:latest
@@ -66,7 +68,7 @@ docker push acrebordemo99.azurecr.io/backend:latest
 
 ## Fix up permissions
 
-7. Grant AKS Node pool managed identity "Key Vault Administrator" rights on the Key Vault
+9. Grant AKS Node pool managed identity "Key Vault Administrator" rights on the Key Vault
 ```
 No command yet - make the change manually via the portal.
 ```
@@ -89,7 +91,7 @@ kubectl get service todo-api -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
 ```
 Open a browser and go to http://IP-ADDRESS. You should see the API Swagger UI.
 
-9. Apply the k8s manifest file for the WEB layer. 
+10. Apply the k8s manifest file for the WEB layer. 
 **TODO**
 
 # Reference
