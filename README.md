@@ -50,7 +50,10 @@ docker run -d -p 80:80 -e REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLI
 docker run -d -p 3100:3100 -e AZURE_COSMOS_CONNECTION_STRING=$AZURE_COSMOS_CONNECTION_STRING -e AZURE_COSMOS_DATABASE_NAME=Todo -e APPLICATIONINSIGHTS_ROLE_NAME=api -e APPLICATIONINSIGHTS_CONNECTION_STRING=$APPLICATIONINSIGHTS_CONNECTION_STRING  -e API_ALLOW_ORIGINS='http://localhost'  backend:latest
 ```
 7. Test the application locally
-Browse to `http://localhost`. You should now see the *Todo* application running from the local containers but using the CosmosDB in Azure.
+```
+Browse to http://localhost.
+```
+You should now see the *Todo* application running from the local containers but using the CosmosDB in Azure.
 
 ## Upload assets ready for AKS
 
