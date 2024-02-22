@@ -80,7 +80,7 @@ No command yet - make the change manually via the portal. TODO: Update the Terra
 
 8. Apply the k8s manifest file for the API layer. 
 ```
-# Update the api.manifest.yaml file with the values from following environment variables:
+# Update the api.ingress.manifest.yaml file with the values from following environment variables:
 # $AZURE_COSMOS_CONNECTION_STRING
 # $APPLICATIONINSIGHTS_CONNECTION_STRING
 # $AZURE_KEY_VAULT_ENDPOINT
