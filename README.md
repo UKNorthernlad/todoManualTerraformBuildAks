@@ -101,9 +101,8 @@ kubectl apply -f .\manifests\api.ingress.manifest.yaml
 
 13. Apply the k8s manifest file for the WEB layer. 
 ```
-# Update the web.ingress.manifest.yaml file with the $INGRESS_IP. Do not change the */api* part.
-# $REACT_APP_API_BASE_URL
-# $REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING
+# Update the web.ingress.manifest.yaml file with the $INGRESS_IP in the REACT_APP_API_BASE_URL environment variable. Do not change the */api* part.
+# Set the REACT_APP_APPLICATIONINSIGHTS_CONNECTION_STRING environment variable value to the $APPLICATIONINSIGHTS_CONNECTION_STRING.
 
 # Now apply the manifest
 kubectl apply -f .\manifests\api.ingress.manifest.yaml
