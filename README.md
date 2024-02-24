@@ -1,6 +1,8 @@
 # Setup instructions
 These instructions assume you are running the setup from your local machine and NOT from the Azure Cloud Shell. The cloud shell is just a container running in Azure but it does not support "docker in docker" scenarios which means you won't be able to build the Web & API container images in the cloud. 
 
+> Currently there are many hardcoded names for Azure resources in the Terraform templates, which means that you'll receive errors when you try to apply the configuration to Azure. The plan is to change these for auto-generated names but in the meantime, you'll need to update these to make them unique.
+
 1. Login to your Azure Subscription:
 ```
 az login
