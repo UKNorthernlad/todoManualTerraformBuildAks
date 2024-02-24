@@ -1,5 +1,5 @@
 # Setup instructions
-These instruction assume you are running the setup from your local machine and NOT from the Azure Cloud Shell. The cloud shell is just a container running in Azure but it does not support "docker in docker" scenarios which means you won't be able to build the the Web & API container images in the cloud. 
+These instructions assume you are running the setup from your local machine and NOT from the Azure Cloud Shell. The cloud shell is just a container running in Azure but it does not support "docker in docker" scenarios which means you won't be able to build the the Web & API container images in the cloud. 
 
 1. Login to your Azure Subscription:
 ```
