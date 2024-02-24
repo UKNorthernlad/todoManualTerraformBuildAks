@@ -57,9 +57,9 @@ docker run -d -p 3100:3100 -e AZURE_COSMOS_CONNECTION_STRING=$AZURE_COSMOS_CONNE
 ```
 8. Test the application locally
 ```
-Browse to http://localhost.
+Browse to http://localhost
 ```
-You should now see the *Todo* application running from the local containers but using the CosmosDB in Azure.
+You should now see the *Todo* application running from local containers but using the CosmosDB in Azure for data storage.
 
 ## Upload assets ready for AKS
 
