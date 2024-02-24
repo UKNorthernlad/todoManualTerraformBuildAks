@@ -33,6 +33,7 @@ $AZURE_KEY_VAULT_ENDPOINT = $tfstate.outputs.AZURE_KEY_VAULT_ENDPOINT.value
 ```
 
 5. Install an Ingress Controller
+
 If you don't have it already, install *Helm* from [Install Helm](https://helm.sh/docs/intro/install)
 ```
 helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace --set controller.nodeSelector."kubernetes\.io/os"=linux --set defaultBackend.nodeSelector."kubernetes\.io/os"=linux --set controller.service.externalTrafficPolicy=Local --set defaultBackend.image.image=defaultbackend-amd64:1.5
