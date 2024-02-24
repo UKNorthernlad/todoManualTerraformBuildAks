@@ -63,7 +63,7 @@ You should now see the *Todo* application running from local containers but usin
 
 ## Upload assets ready for AKS
 
-9. Upload the Docker images to the new ACR
+9. Upload the container images to the Azure Container Registry created by Terraform.
 ```
 $acr = "acrebordemo99"
 docker tag frontend:latest acrebordemo99.azurecr.io/frontend:latest
