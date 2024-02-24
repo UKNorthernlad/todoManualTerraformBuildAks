@@ -45,7 +45,7 @@ $INGRESS_IP = (kubectl get service/ingress-nginx-controller --namespace ingress-
 
 ## Test deployment locally
 
-7. Build the container images
+7. Build & Run the container images
 ```
 docker build -t frontend:latest ./src/web
 
